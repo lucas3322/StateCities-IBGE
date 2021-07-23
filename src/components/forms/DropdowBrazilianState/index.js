@@ -1,19 +1,11 @@
 import { useEffect, useState } from 'react';
-import { fetchStates } from '../../../helpers/Ibge';
+import { fetchStates, pasrseStates } from '../../../helpers/Ibge';
 
 const DropdowBrazilianStates = ({id, name, onChange = () => {}}) => {
 
     const [states, setStates] = useState([]);
     useEffect(() =>{
-        fetchStates().then((state) =>{
-            return state.map((state)=>{
-                return {label: state.nome, value: state.sigla}
-            }).sort((a, b)=> {
-                return a.label.localeCompare(b.label);
-            })
-        }).then((states)=> {
-            setStates(states);
-        })
+        fetchStates().then(pasrseStates).then(setStates)
     }, []);
 
 

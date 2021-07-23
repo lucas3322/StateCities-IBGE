@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import {fetchCities} from '../../../helpers/Ibge'
+import {fetchCities, pasrseCities} from '../../../helpers/Ibge'
 
 const DropdowBrazilianCities = ({id, name, state, onChange = () => {}}) => {
 
     const [cities, setCities] = useState([]);
 
     useEffect(()=>{
-        fetchCities(state).then((cities)=> {
+        fetchCities(state).then(pasrseCities).then((cities)=> {
             setCities(cities);
         }); 
     }, [state]);
@@ -15,12 +15,9 @@ const DropdowBrazilianCities = ({id, name, state, onChange = () => {}}) => {
         <select id={id || name} name={name || id} onChange={onChange}>
             
             {cities.map((city)=>{
-                const {id, nome} = city;
-                return(
-                <option value={id} key={id}> {nome} </option>
-                );
-            })};
-
+                const {label, value} = city;
+                return(<option value={value} key={value}> {label} </option>);
+            })}
         </select>
     );
 };
