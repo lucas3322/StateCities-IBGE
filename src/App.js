@@ -1,3 +1,4 @@
+import {useState} from 'react';
 
 import './App.css';
 import DropdowBrazilianCities from './components/forms/DropdowBrazilianCities';
@@ -5,13 +6,24 @@ import DropdowBrazilianStates from './components/forms/DropdowBrazilianState';
 
 
 function App() {
+
+  const [formValues, setFormValues] = useState ({});
+
+  const handleInputChange = (e) => {
+    e.preventDefault();
+    const {value, name} = e.target;
+    setFormValues({...formValues, [name]:value });
+  }
+
+  console.log('formulário', formValues)
+
   return (
     <div className="container">
       <form>
       <label htmlFor="state">Estado:</label>
-        <DropdowBrazilianStates />
+        <DropdowBrazilianStates onChange={handleInputChange}/>
       <label htmlFor="city">Cidade:</label>
-        <DropdowBrazilianCities />
+        <DropdowBrazilianCities state={formValues.state} onChange={handleInputChange}/>
       </form>
     </div>
   );

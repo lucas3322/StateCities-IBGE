@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { fetchStates } from '../../../helpers/Ibge';
 
-const DropdowBrazilianStates = () => {
+const DropdowBrazilianStates = ({onChange = () => {}}) => {
 
     const [states, setStates] = useState([]);
     useEffect(() =>{
@@ -13,12 +13,15 @@ const DropdowBrazilianStates = () => {
 
     
     return (
-        <select id="state">
+        <select id="state" name="state" onChange={onChange}>
+            
             <option value="">Selecione um estado</option>
+
             {states.map((state)=>{
                 const {sigla, nome} = state;
                 return (<option key={sigla} value={sigla}>{nome}</option>)
             })}
+            
         </select>
     );
 };
