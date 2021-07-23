@@ -21,9 +21,9 @@ function App() {
     <div className="container">
       <form>
       <label htmlFor="state">Estado:</label>
-        <DropdowBrazilianStates onChange={handleInputChange}/>
+        <DropdowBrazilianStates id="state" name="state" onChange={handleInputChange}/>
       <label htmlFor="city">Cidade:</label>
-        <DropdowBrazilianCities state={formValues.state} onChange={handleInputChange}/>
+        <DropdowBrazilianCities id="city" name="city" state={formValues.state} onChange={handleInputChange}/>
       </form>
     </div>
   );

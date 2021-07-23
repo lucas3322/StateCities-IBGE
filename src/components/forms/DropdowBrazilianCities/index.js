@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import {fetchCities} from '../../../helpers/Ibge'
 
-const DropdowBrazilianCities = ({state, onChange = () => {}}) => {
+const DropdowBrazilianCities = ({id, name, state, onChange = () => {}}) => {
 
     const [cities, setCities] = useState([]);
 
@@ -12,7 +12,7 @@ const DropdowBrazilianCities = ({state, onChange = () => {}}) => {
     }, [state]);
 
     return (
-        <select id="city" name="city" onChange={onChange}>
+        <select id={id || name} name={name || id} onChange={onChange}>
             
             {cities.map((city)=>{
                 const {id, nome} = city;
